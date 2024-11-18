@@ -12,10 +12,10 @@ export const getAll = async (req, res) => {
 export const create = async (req, res) => {
   try {
     console.log(req.body)
-    const certificado = await Certificado.create({...req.body, 'id_Curriculo_id': req.body['id_Curriculo_id']});
+    const certificado = await Certificado.create(req.body);
     res.status(201).json(certificado);
   } catch (error) {
-    res.status(400).json({ error: "Erro ao criar ",message: error.message,stack: error.stack});
+    res.status(400).json({ error: "Erro ao criar certificado",message: error.message,stack: error.stack});
   }
 };
 
