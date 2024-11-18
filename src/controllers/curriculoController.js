@@ -20,7 +20,7 @@ export const create = async (req, res) => {
 
 export const getById = async (req, res) => {
   try {
-    const curriculo = await Curriculo.findByPk(req.params.id);
+    const curriculo = await Curriculo.findByPk(req.params.curriculoId);
     if (!curriculo) {
       return res.status(404).json({ error: "Currículo não encontrado" });
     }
@@ -33,12 +33,12 @@ export const getById = async (req, res) => {
 export const update = async (req, res) => {
   try {
     const [atualizado] = await Curriculo.update(req.body, {
-      where: { id: req.params.id },
+      where: { curriculoId: req.params.curriculoId },
     });
     if (!atualizado) {
       return res.status(404).json({ error: "Currículo não encontrado" });
     }
-    const curriculoAtualizado = await Curriculo.findByPk(req.params.id);
+    const curriculoAtualizado = await Curriculo.findByPk(req.params.curriculoId);
     return res.status(200).json(curriculoAtualizado);  } catch (error) {
     res.status(400).json({ error: "Erro ao atualizar currículo",message: error.message,stack: error.stack });
   }
@@ -47,7 +47,7 @@ export const update = async (req, res) => {
 export const deleteCurriculo = async (req, res) => {
   try {
     const deletado = await Curriculo.destroy({
-      where: { id: req.params.id },
+      where: { curriculoId: req.params.curriculoId },
     });
     if (!deletado) {
       return res.status(404).json({ error: "Currículo não encontrado" });
