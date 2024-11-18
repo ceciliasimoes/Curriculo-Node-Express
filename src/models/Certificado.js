@@ -21,9 +21,6 @@ const Certificado = sequelize.define("Certificado", {
   },
   resumoDeAtividades: {
     type: DataTypes.STRING,
-    validate: {
-      len: [255, 600],
-    },
   },
 });
 
